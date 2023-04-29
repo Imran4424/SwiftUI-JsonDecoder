@@ -7,37 +7,29 @@
 
 import SwiftUI
 
-struct Address: Codable {
-    let street: String
-    let city: String
-}
-
-struct User: Codable {
-    let name: String
-    let address: Address
+class User: ObservableObject, Codable {
+    enum CodingKeys: CodingKey {
+        case name
+    }
+    
+    @Published var name = "Imran Hossain"
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+    }
 }
 
 struct ContentView: View {
     var body: some View {
-        Button("Decode JSON") {
-            let input = """
-            {
-                "name": "Hugh Jackman",
-                "address": {
-                    "street": "555, Hugh Jackman Avenue",
-                    "city": "Nashvile"
-                }
-            }
-            """
-            let data = Data(input.utf8)
-            
-            guard let user = try? JSONDecoder().decode(User.self, from: data) else {
-                print("data decoding failed")
-                return
-            }
-            
-            print(user.address.street)
-        }
+        Text("Soudha")
+            .font(.largeTitle)
+            .foregroundColor(.blue)
     }
 }
 

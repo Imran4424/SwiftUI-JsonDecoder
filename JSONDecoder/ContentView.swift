@@ -39,7 +39,7 @@ struct ContentView: View {
 //    @State private var results = [Result]()
     
     var body: some View {
-        AsyncImage(url: URL(string: "https://hws.dev/img/logo.png"))
+        AsyncImage(url: URL(string: "https://hws.dev/img/logo.png"), scale: 3)
     }
 }
 

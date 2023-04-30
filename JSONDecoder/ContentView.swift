@@ -39,7 +39,8 @@ struct ContentView: View {
 //    @State private var results = [Result]()
     
     var body: some View {
-        AsyncImage(url: URL(string: "https://hws.dev/img/logo.png"), scale: 3)
+        AsyncImage(url: URL(string: "https://hws.dev/img/logo.png"))
+            .frame(width: 200, height: 200) // frame will not work for async image
     }
 }
 
